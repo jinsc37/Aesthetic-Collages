@@ -72,7 +72,7 @@ app.config["DEBUG"] = True
 @app.route('/')
 @crossdomain(origin='*')
 def index():
-	return render_template("test.html")
+	return render_template("aesColl_UI.html")
     #return render_template("template.html")
 
 
