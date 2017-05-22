@@ -14,7 +14,7 @@ function sort_layout(){
 		$.ajaxSettings.traditional = true;
 	    $.ajax({
 	      type: "POST",
-	      url: "http://http://jinsc37.pythonanywhere.com/getRanks",
+	      url: "/getRanks",
 	      data : JSON.stringify(img_arr),
 	      dataType : 'json',
 	      contentType: 'application/json; charset=utf-8',
