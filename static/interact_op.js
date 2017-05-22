@@ -7,22 +7,22 @@ function sort_layout(){
 		for (i=0; i<images.length; i++){
 			img_arr[i.toString()] = images[i].attrs.image.src;
 		}
-	
+
 		//console.log(img_arr);
 
 		// ajax request
 		$.ajaxSettings.traditional = true;
 	    $.ajax({
 	      type: "POST",
-	      url: "http://127.0.0.1:5000/getRanks",
+	      url: "http://http://jinsc37.pythonanywhere.com/getRanks",
 	      data : JSON.stringify(img_arr),
 	      dataType : 'json',
 	      contentType: 'application/json; charset=utf-8',
-	      
+
 	      // handle success
 	      success: function(result) {
 	      	var ranks = result.ranked_idx;//Ranked indices- 1st entry: index of highest scoring img
-	        //console.log(ranks); 
+	        //console.log(ranks);
 	        pos = arrange(images, ranks);
 	        for (i=0; i<images.length; i++){
 				images[i].getParent().position({x: pos.x[i], y:pos.y[i]});
@@ -61,7 +61,7 @@ function resize(){
 			group.get('.bottomLeft')[0].setY(group.get('.topLeft')[0].getY()+images[i].attrs.image.height * factor);
 			group.get('.bottomRight')[0].setX(group.get('.topLeft')[0].getX()+images[i].attrs.image.width * factor);
 			group.get('.bottomRight')[0].setY(group.get('.topLeft')[0].getY()+images[i].attrs.image.height * factor);
-			
+
 			images[i].attrs.image.width = images[i].attrs.image.width * factor;
 			images[i].attrs.image.height = images[i].attrs.image.height * factor;
 			//console.log(group.get('.topLeft')[0]);
@@ -246,7 +246,7 @@ function sort_layout(){
       type: "POST",
       url: "http://127.0.0.1:5000/getFeatures",
       data : { imageBase64 : img_arr },
-      
+
       // handle success
       success: function(result) {
         console.log(result);

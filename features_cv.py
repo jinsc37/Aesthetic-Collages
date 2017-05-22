@@ -26,7 +26,7 @@ def getColorful(img):
 	else:
 		img = color.gray2rgb(img)
 		img2D = np.reshape(img, (1,img.shape[0]*img.shape[1],3))
-	
+
 	centers = np.empty([1,0,3], dtype=np.uint8) # make the empty centers vector
 	bin_idxs = np.array([32, 96, 160, 224], dtype=np.uint8) # bin center locations
 	for r in bin_idxs: # assign the center pixel values
