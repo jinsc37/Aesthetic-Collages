@@ -1,29 +1,53 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>My scratchboard page</title>
-    </head>
 
-    <body>
+<head>
+  <title>Aesthetic Collages</title>
+  <!--<script src="http://code.jquery.com/jquery-3.2.0.min.js"></script>-->
+  <!--<script src="jquery-3.2.0.min.js"></script>-->
+  <script src="{{url_for('static', filename='jquery-3.2.0.min.js')}}"></script>
 
-        <div>
-            This is the first dummy comment.
-        </div>
+  <!--<script src="https://cdn.rawgit.com/konvajs/konva/1.5.0/konva.min.js"></script>-->
+  <!--<script src="konva.min.js"></script>-->
+  <script src="{{url_for('static', filename='konva.min.js')}}"></script>
 
-        <div>
-            This is the the second dummy comment.  It's no more interesting
-            than the first.
-        </div>
+  <meta charset="utf-8">
 
-        <div>
-            This is the third dummy comment.  It's actually quite exciting!
-        </div>
+  <style type="text/css">
+    body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    }
+    canvas {
+    width: 1px;
+    height: 1px;
+    }
+    #dropzone {
+    width: window.innerWidth;
+    height: window.innerHeight;
+    }
+  </style>
+</head>
 
-        <div>
-            <form action="." method="POST">
-                <textarea name="contents" placeholder="Enter a comment"></textarea>
-                <input type="submit" value="Post comment">
-            </form>
-        </div>
 
-    </body>
+<body>
+  <div id="dropzone">
+    <div id="container"></div>
+  </div>
+  <canvas id="myCanvas"></canvas>
+</body>
+
+
+<!--<script src="mouse_key_op.js"></script>-->
+<!--<script src="container_op.js"></script>-->
+<!--<script src="interact_op.js"></script>-->
+<script src="{{url_for('static', filename='mouse_key_op.js')}}"></script>
+<script src="{{url_for('static', filename='container_op.js')}}"></script>
+<script src="{{url_for('static', filename='interact_op.js')}}"></script>
+
+
+
+
 </html>
