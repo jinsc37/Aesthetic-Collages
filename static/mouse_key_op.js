@@ -41,7 +41,7 @@ layer.on('mousedown', function(evt) {
       shape.strokeEnabled(true); //emphasize this image
       layer.draw();
     }
-    else if(ctrlIsPressed && shape.strokeEnabled() == false){
+    else if(ctrlIsPressed && shape.getParent().getChildren()[1].visible() == false){
       group.getChildren()[1].show()
       group.getChildren()[2].show()
       group.getChildren()[3].show()
@@ -50,7 +50,7 @@ layer.on('mousedown', function(evt) {
       shape.strokeEnabled(true);
       layer.draw();
     }
-    else if(ctrlIsPressed && shape.strokeEnabled()) {
+    else if(ctrlIsPressed && shape.getParent().getChildren()[1].visible()) {
       group.getChildren()[1].hide()
       group.getChildren()[2].hide()
       group.getChildren()[3].hide()
@@ -60,6 +60,9 @@ layer.on('mousedown', function(evt) {
       layer.draw();
     }
     //console.log(shape.strokeEnabled())
+  }
+  if (allSelected == true){
+    applyHighlight();
   }
 });
 /*
@@ -78,10 +81,12 @@ $( "#container" ).dblclick(function() {
   if (ctrlIsPressed == false){
     var circles = stage.find('Circle');
     circles.hide();
-    
+
     var shapes = stage.find('Image');
     shapes.strokeEnabled(false);
     layer.draw();
+
+    allSelected = false;
   }
 });
 
@@ -104,6 +109,83 @@ $(document).keydown(function(event){
     for(i=0;i<shapes.length;i++){
       if(shapes[i].strokeEnabled()){
         shapes[i].getParent().destroy();
+        layer.draw();
+      }
+    }
+  }
+});
+
+//select all 'key = a'
+var allSelected = false;
+$(document).keydown(function(event){
+  if(event.which=="65"){
+    var img = stage.find('Image');
+    if (allSelected == false){
+      for(i=0;i<img.length;i++){
+        img[i].strokeEnabled(true);
+        layer.draw();
+      }
+      allSelected = true;
+    }
+    else{
+      for(i=0;i<img.length;i++){
+        if (img[i].getParent().getChildren()[1].visible() == false){
+          img[i].strokeEnabled(false);
+          layer.draw();
+        }
+      }
+      allSelected = false;
+    }
+  }
+});
+
+function applyHighlight(){
+  var img = stage.find('Image');
+  for(i=0;i<img.length;i++){
+    img[i].strokeEnabled(true);
+    layer.draw();
+  }
+}
+
+
+//Key direction
+$(document).keydown(function(event){
+  if(event.which=="38"){
+    var img = stage.find('Image');
+    for(i=0;i<img.length;i++){
+      if (img[i].getParent().getChildren()[1].visible()){
+        img[i].getParent().position({x: img[i].getParent().attrs.x,
+          y:img[i].getParent().attrs.y - 1});
+        layer.draw();
+      }
+    }
+  }
+  else if(event.which=="40"){
+    var img = stage.find('Image');
+    for(i=0;i<img.length;i++){
+      if (img[i].getParent().getChildren()[1].visible()){
+        img[i].getParent().position({x: img[i].getParent().attrs.x,
+          y:img[i].getParent().attrs.y + 1});
+        layer.draw();
+      }
+    }
+  }
+  else if(event.which=="39"){
+    var img = stage.find('Image');
+    for(i=0;i<img.length;i++){
+      if (img[i].getParent().getChildren()[1].visible()){
+        img[i].getParent().position({x: img[i].getParent().attrs.x + 1,
+          y:img[i].getParent().attrs.y});
+        layer.draw();
+      }
+    }
+  }
+  else if(event.which=="37"){
+    var img = stage.find('Image');
+    for(i=0;i<img.length;i++){
+      if (img[i].getParent().getChildren()[1].visible()){
+        img[i].getParent().position({x: img[i].getParent().attrs.x - 1,
+          y:img[i].getParent().attrs.y});
         layer.draw();
       }
     }

@@ -26,6 +26,11 @@ function drop(e) {
 }
 //
 function handleFiles(files) {
+  var div = document.createElement('div');
+  div.id = 'loading';
+  div.innerHTML = 'Loading...'
+  document.body.appendChild(div);
+
     for (var i = 0; i < files.length; i++) {
 
       // get the next file that the user selected
@@ -69,6 +74,11 @@ function handleFiles(files) {
                 y: 0,
                 draggable: true
             });
+            //Display highlight when image is dragged
+            KonvaImgGroup.on('dragmove',function() {
+              highlight(KonvaImgGroup.get('Image')[0]);
+            });
+
             //var factor = window.innerWidth * window.innerWidth
             layer.add(KonvaImgGroup);
             KonvaImgGroup.add(KonvaImg);
@@ -85,7 +95,7 @@ function handleFiles(files) {
               //newImg.draggable = 'true'
               KonvaImg.image(newImg);
               resize();
-              sort_layout();
+              sort_layout(files.length);
               //layer.draw();
             }
               //newImg.src = canvas.toDataURL('image/jpeg');
@@ -133,6 +143,7 @@ function update(activeAnchor) {
             break;
     }
     image.position(topLeft.position());
+    highlight(image);
     //console.log(topLeft.position())
     var width = topRight.getX() - topLeft.getX();
     var height = bottomLeft.getY() - topLeft.getY();
