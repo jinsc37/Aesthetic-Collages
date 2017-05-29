@@ -34,13 +34,13 @@ function sort_layout(init_file_len){
 						enumerable: false,
 						configurable: false,
 						writable: false,
-						value: pos.x[i]+images[i].attrs.image.width/2});
+						value: pos.x[i]+images[i].width()/2});
 
 					Object.defineProperty(images[i],'init_locY',{
 						enumerable: false,
 						configurable: false,
 						writable: false,
-						value: pos.y[i]+images[i].attrs.image.height/2});
+						value: pos.y[i]+images[i].height()/2});
 				}
 				highlight(images[i]);
 	        }
@@ -83,6 +83,13 @@ function resize(){
 				group.get('.bottomLeft')[0].setY(group.get('.topLeft')[0].getY()+images[i].attrs.image.height * factor);
 				group.get('.bottomRight')[0].setX(group.get('.topLeft')[0].getX()+images[i].attrs.image.width * factor);
 				group.get('.bottomRight')[0].setY(group.get('.topLeft')[0].getY()+images[i].attrs.image.height * factor);
+
+				group.get('.top')[0].setX(group.get('.topRight')[0].getX()/2 - 5);
+				group.get('.left')[0].setY(group.get('.bottomLeft')[0].getY()/2 - 5);
+				group.get('.right')[0].setX(group.get('.bottomRight')[0].getX() - 5);
+				group.get('.right')[0].setY(group.get('.bottomRight')[0].getY()/2 - 5);
+				group.get('.bottom')[0].setX(group.get('.bottomRight')[0].getX()/2 - 5);
+				group.get('.bottom')[0].setY(group.get('.bottomRight')[0].getY() - 5);
 
 				images[i].attrs.image.width = images[i].attrs.image.width * factor;
 				images[i].attrs.image.height = images[i].attrs.image.height * factor;
@@ -253,8 +260,8 @@ function arrange(images, ranks){
 
 
 function highlight(img){
-	var locX = img.getParent().attrs.x + img.attrs.image.width/2;
-	var locY = img.getParent().attrs.y + img.attrs.image.height/2;
+	var locX = img.getParent().attrs.x + img.getPosition().x + img.width()/2;
+	var locY = img.getParent().attrs.y + img.getPosition().y + img.height()/2;
 
 	var spectrum = ["#00FF00","#11FF00","#22FF00","#33FF00","#44FF00","#55FF00","#66FF00","#77FF00",
 					"#88FF00","#99FF00","#AAFF00","#BBFF00","#CCFF00","#DDFF00","#EEFF00","#FFFF00",

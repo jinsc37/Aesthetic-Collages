@@ -33,10 +33,17 @@ layer.on('mousedown', function(evt) {
       var circles = stage.find('Circle');
       circles.hide();
 
+      var rects = stage.find('Rect');
+      rects.hide();
+
       group.getChildren()[1].show() // show this circles
       group.getChildren()[2].show()
       group.getChildren()[3].show()
       group.getChildren()[4].show()
+      group.getChildren()[5].show()
+      group.getChildren()[6].show()
+      group.getChildren()[7].show()
+      group.getChildren()[8].show()
 
       shape.strokeEnabled(true); //emphasize this image
       layer.draw();
@@ -46,6 +53,10 @@ layer.on('mousedown', function(evt) {
       group.getChildren()[2].show()
       group.getChildren()[3].show()
       group.getChildren()[4].show()
+      group.getChildren()[5].show()
+      group.getChildren()[6].show()
+      group.getChildren()[7].show()
+      group.getChildren()[8].show()
 
       shape.strokeEnabled(true);
       layer.draw();
@@ -55,6 +66,10 @@ layer.on('mousedown', function(evt) {
       group.getChildren()[2].hide()
       group.getChildren()[3].hide()
       group.getChildren()[4].hide()
+      group.getChildren()[5].hide()
+      group.getChildren()[6].hide()
+      group.getChildren()[7].hide()
+      group.getChildren()[8].hide()
 
       shape.strokeEnabled(false);
       layer.draw();
@@ -82,6 +97,9 @@ $( "#container" ).dblclick(function() {
     var circles = stage.find('Circle');
     circles.hide();
 
+    var rects = stage.find('Rect');
+    rects.hide();
+
     var shapes = stage.find('Image');
     shapes.strokeEnabled(false);
     layer.draw();
@@ -107,7 +125,7 @@ $(document).keydown(function(event){
   if(event.which=="46"){
     var shapes = stage.find('Image');
     for(i=0;i<shapes.length;i++){
-      if(shapes[i].strokeEnabled()){
+      if(shapes[i].getParent().getChildren()[1].visible()){
         shapes[i].getParent().destroy();
         layer.draw();
       }
